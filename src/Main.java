@@ -31,23 +31,13 @@ public class Main {
                 .collect(Collectors.toList());
 
 
-        List<String> arbaitenPeopleMan = persons.stream()
-                .filter(person -> person.getSex().equals(Sex.MAN))
+        List<String> arbaitenPeople = persons.stream()
                 .filter(person -> person.getEducation().equals(Education.HIGHER))
                 .filter(person -> person.getAge() > 17)
-                .filter(person -> person.getAge() < 66)
+                .filter(person -> person.getSex().equals(Sex.MAN) ? person.getAge() < 66 : person.getAge() < 61)
                 .map(Person::getFamily)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
 
-
-        List<String> arbaitenPeopleWoman = persons.stream()
-                .filter(person -> person.getSex().equals(Sex.WOMAN))
-                .filter(person -> person.getEducation().equals(Education.HIGHER))
-                .filter(person -> person.getAge() > 17)
-                .filter(person -> person.getAge() < 61)
-                .map(Person::getFamily)
-                .sorted(Comparator.naturalOrder())
-                .collect(Collectors.toList());
     }
 }
